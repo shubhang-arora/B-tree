@@ -10,7 +10,7 @@ Files <br>
 * input.py <br>
   This files creates a .txt file which is used to insert Bulk data in B+ Tree.
 
-* <filename.txt> 
+* filename.txt 
 * This will be the created when input.py will run and will contain bulk data.
  <br>
 
