@@ -10,13 +10,14 @@ Files <br>
 * input.py <br>
   This files creates a .txt file which is used to insert Bulk data in B+ Tree.
 
-* filename.txt 
-* This will be the created when input.py will run and will contain bulk data.
+* filename.txt <br>
+  This will be the created when input.py will run and will contain bulk data.
  <br>
 
-User have the following options 
+Options <br>
 * Bulk Insert into B-Tree 
 * Insert single element into B-Tree
 * Search element from B-Tree
 * Delete an element from B-Tree
+
 
