@@ -4,13 +4,16 @@ A B+ tree is an n-ary tree with a variable but often large number of children pe
 
 Files
  /b-tree.py
+  Contains the code for implenting binary plus tree.
+  This files contains functions like Add, delete, search.
   
+ /input.py
+  This files creates a .txt file which is used to insert Bulk data in B+ Tree.
+ 
 
 User have the following options 
 * Bulk Insert into B-Tree 
 * Insert single element into B-Tree
 * Search element from B-Tree
 * Delete an element from B-Tree
-
-There will be a file created by some other process named in the format <filename.txt>
 
