@@ -21,3 +21,7 @@ Options <br>
 * Delete an element from B-Tree
 
 
+Download the project in a folder and unzip it.
+To run the script write following commands in terminal
+* python
+* /path_of_the_folder()/btree.py
