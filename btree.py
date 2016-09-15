@@ -2,6 +2,7 @@ import bisect
 import itertools
 import operator
 import os
+import time
 from input import createfile
 
 
@@ -508,78 +509,6 @@ class BPlusTree(BTree):
         return leaves, [s[0] for s in seps]
 
 
-import random
-import unittest
-
-
-class BTreeTests(unittest.TestCase):
-    def test_additions(self):
-        bt = BTree(20)
-        l = range(2000)
-        for i, item in enumerate(l):
-            bt.insert(item)
-            self.assertEqual(list(bt), l[:i + 1])
-
-    def test_bulkloads(self):
-        bt = BTree.bulkload(range(2000), 20)
-        self.assertEqual(list(bt), range(2000))
-
-    def test_removals(self):
-        bt = BTree(20)
-        l = range(2000)
-        map(bt.insert, l)
-        rand = l[:]
-        random.shuffle(rand)
-        while l:
-            self.assertEqual(list(bt), l)
-            rem = rand.pop()
-            l.remove(rem)
-            bt.remove(rem)
-        self.assertEqual(list(bt), l)
-
-    def test_insert_regression(self):
-        bt = BTree.bulkload(range(2000), 50)
-
-        for i in xrange(100000):
-            bt.insert(random.randrange(2000))
-
-
-class BPlusTreeTests(unittest.TestCase):
-    def test_additions_sorted(self):
-        bt = BPlusTree(20)
-        l = range(2000)
-
-        for item in l:
-            bt.insert(item, str(item))
-
-        for item in l:
-            self.assertEqual(str(item), bt[item])
-
-        self.assertEqual(l, list(bt))
-
-    def test_additions_random(self):
-        bt = BPlusTree(20)
-        l = range(2000)
-        random.shuffle(l)
-
-        for item in l:
-            bt.insert(item, str(item))
-
-        for item in l:
-            self.assertEqual(str(item), bt[item])
-
-        self.assertEqual(range(2000), list(bt))
-
-    def test_bulkload(self):
-        bt = BPlusTree.bulkload(zip(range(2000), map(str, range(2000))), 20)
-
-        self.assertEqual(list(bt), range(2000))
-
-        self.assertEqual(
-            list(bt.iteritems()),
-            zip(range(2000), map(str, range(2000))))
-
-
 if __name__ == '__main__':
     cont = True
     print('1. Bulk Insert into B-Tree\n'
@@ -588,8 +517,9 @@ if __name__ == '__main__':
           '4. Delete an element from B-Tree\n')
     bt = BTree(20)
     while cont:
-        choice = input('Choose an option: \n')
+        choice = raw_input('Choose an option: \n')
         if int(choice) == 1:
+            start_time = time.time()
             name = 'numbers'
             number = raw_input("Enter the number of objects you want to write in the file:  ")
             createfile(name, number)
@@ -598,12 +528,13 @@ if __name__ == '__main__':
             for number in numbers:
                 bt.insert(number)
             file.close()
+            total_time = time.time() - start_time
         elif int(choice) == 2:
             number = raw_input("Enter the number :  ")
             bt.insert(number)
         elif int(choice) == 3:
             number = raw_input("Enter the number :  ")
-            if bt._present(number,bt._path_to(number)):
+            if bt._present(number, bt._path_to(number)):
                 print('Number present')
             else:
                 print('Number not present')
@@ -612,8 +543,7 @@ if __name__ == '__main__':
             bt.remove(number)
         else:
             print('Wrong Option')
-        print (bt)
-
+        print bt
         if raw_input("Continue ?\n  ") == 'y':
             cont = True
         else:
