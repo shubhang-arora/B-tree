@@ -8,9 +8,9 @@ Files <br>
   This files contains functions like Add, delete, search.
   
 * input.py <br>
-  This files creates a .txt file which is used to insert Bulk data in B+ Tree.
+  This files creates numbers.txt file which is used to insert Bulk data in B+ Tree.
 
-* filename.txt <br>
+* numbers.txt <br>
   This will be the created when input.py will run and will contain bulk data.
  <br>
 
