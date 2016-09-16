@@ -27,3 +27,5 @@ Download the project in a folder and unzip it.
 To run the script write following commands in terminal
 * python
 * /path_of_the_folder()/btree.py
+
+Time Taken to insert 10000 numbers = 4.02300000191 seconds
