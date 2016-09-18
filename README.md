@@ -1,7 +1,8 @@
 # B+ tree
-Group members <br>
+Group members <br><br>
 SAHIL SHARMA 1410110345 <br>
 SHUBHANG ARORA 1410110399 <br>
+
 A B+ tree is an n-ary tree with a variable but often large number of children per node. A B+ tree consists of a root, internal nodes and leaves.The root may be either a leaf or a node with two or more children.
 
 Files <br>
