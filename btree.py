@@ -365,7 +365,7 @@ class BTree(object):
 
         return [self.LEAF(self, contents=node) for node in leaves], seps
 
-    def _build_bulkloaded_branches(self, (leaves, seps)):
+    def _build_bulkloaded_branches(self, leaves, seps):
         minimum = self.order // 2
         levels = [leaves]
 
@@ -503,7 +503,7 @@ class BPlusTree(BTree):
             data=[p[1] for p in pairs])
                   for pairs in leaves]
 
-        for i in xrange(len(leaves) - 1):
+        for i in range(len(leaves) - 1):
             leaves[i].next = leaves[i + 1]
 
         return leaves, [s[0] for s in seps]
@@ -517,11 +517,11 @@ if __name__ == '__main__':
           '4. Delete an element from B-Tree\n')
     bt = BTree(20)
     while cont:
-        choice = raw_input('Choose an option: \n')
+        choice = input('Choose an option: \n')
         if int(choice) == 1:
             start_time = time.time()
             name = 'numbers'
-            number = raw_input("Enter the number of objects you want to write in the file:  ")
+            number = input("Enter the number of objects you want to write in the file:  ")
             createfile(name, number)
             file = open(os.getcwd() + '/' + name + '.txt', 'r')
             numbers = file.read().split('\n')
@@ -530,21 +530,28 @@ if __name__ == '__main__':
             file.close()
             total_time = time.time() - start_time
         elif int(choice) == 2:
-            number = raw_input("Enter the number :  ")
-            bt.insert(number)
-        elif int(choice) == 3:
-            number = raw_input("Enter the number :  ")
+            number = input("Enter the number :  ")
             if bt._present(number, bt._path_to(number)):
+                depth = bt._path_to(number)
+                print(depth)
+                print("Number already present")
+            else:
+                bt.insert(number)
+        elif int(choice) == 3:
+            number = input("Enter the number :  ")
+            if bt._present(number, bt._path_to(number)):
+                depth = bt._path_to(number)
+                print(depth)
                 print('Number present')
             else:
                 print('Number not present')
         elif int(choice) == 4:
-            number = raw_input("Enter the number :  ")
+            number = input("Enter the number :  ")
             bt.remove(number)
         else:
             print('Wrong Option')
-        print bt
-        if raw_input("Continue ?\n  ") == 'y':
+        print (bt)
+        if input("Continue ?\n  ") == 'y':
             cont = True
         else:
             cont = False
